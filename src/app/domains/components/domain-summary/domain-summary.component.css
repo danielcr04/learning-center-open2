@@ -1,0 +1,83 @@
+/* src/app/components/domain-summary/domain-summary.component.css */
+mat-card {
+  margin: 16px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.12), 0 1.5px 4px rgba(0,0,0,0.10);
+  border-radius: 16px;
+  transition: box-shadow 0.3s, transform 0.3s;
+  font-family: 'Roboto', Arial, sans-serif;
+  background: #fff;
+  width: 100%;
+  max-width: 470px;
+  min-height: 200px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column; /* Aseguramos que los elementos estén en columna */
+  padding: 16px;
+}
+
+mat-card:hover {
+  box-shadow: 0 8px 32px rgba(0,0,0,0.18), 0 3px 8px rgba(0,0,0,0.15);
+  transform: translateY(-4px) scale(1.02);
+}
+
+mat-card-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+mat-card-header h3 {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #1976d2;
+  margin: 0;
+  flex: 1; /* Hace que el título ocupe todo el espacio disponible */
+}
+
+mat-card-content p {
+  font-size: 1.1rem;
+  color: #444;
+  margin: 8px 0;
+}
+
+mat-card-footer {
+  border-top: 1px solid #eee;
+  margin-top: 16px;
+  padding: 16px 20px 12px 20px;
+  font-size: 1.15rem;
+  color: #444;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  background: #fafbfc;
+  border-radius: 0 0 16px 16px;
+}
+
+.image-card {
+  width: 40px;  /* Tamaño reducido de la imagen */
+  height: 40px;
+  object-fit: contain; /* Mantiene la proporción de la imagen */
+  border-radius: 5px;
+}
+
+/* Estilo responsive para pantallas más pequeñas */
+@media (max-width: 600px) {
+  mat-card {
+    max-width: 100%;
+    margin: 8px;
+    padding: 12px;
+  }
+
+  mat-card-footer {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 12px 10px 8px 10px;
+    font-size: 1rem;
+  }
+
+  .image-card {
+    width: 30px;  /* Ajustamos aún más el tamaño de la imagen */
+    height: 30px;
+  }
+}

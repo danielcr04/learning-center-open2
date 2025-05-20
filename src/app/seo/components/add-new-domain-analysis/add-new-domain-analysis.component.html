@@ -1,0 +1,72 @@
+<!-- add-new-domain-analysis.component.html -->
+<div class="form-container">
+  <h2>Add New Domain Analysis</h2>
+
+  <form [formGroup]="analysisForm" (ngSubmit)="onSubmit()" class="analysis-form" novalidate>
+    <!-- Domain -->
+    <mat-form-field appearance="fill">
+      <mat-label>Domain</mat-label>
+      <mat-select formControlName="domainId">
+        <mat-option *ngFor="let domain of availableDomains" [value]="domain.id">
+          {{domain.name}}
+        </mat-option>
+      </mat-select>
+      @if (analysisForm.get('domainId')?.invalid && analysisForm.get('domainId')?.touched) {
+        <mat-error>Domain is required</mat-error>
+      }
+    </mat-form-field>
+
+    <!-- Analysis Tool -->
+    <mat-form-field appearance="fill">
+      <mat-label>Analysis Tool</mat-label>
+      <mat-select formControlName="toolCode">
+        <mat-option *ngFor="let tool of availableTools" [value]="tool.code">
+          {{tool.name}}
+        </mat-option>
+      </mat-select>
+      @if (analysisForm.get('toolCode')?.invalid && analysisForm.get('toolCode')?.touched) {
+        <mat-error>Tool is required</mat-error>
+      }
+    </mat-form-field>
+
+    <!-- Domain Authority -->
+    <mat-form-field appearance="fill">
+      <mat-label>Domain Authority</mat-label>
+      <input matInput formControlName="domainAuthority" type="number" min="1" max="100" placeholder="Enter domain authority (1-100)">
+      @if (analysisForm.get('domainAuthority')?.invalid && analysisForm.get('domainAuthority')?.touched) {
+        <mat-error>
+          @if (analysisForm.get('domainAuthority')?.errors?.['required']) {
+            Domain authority is required
+          } @else if (analysisForm.get('domainAuthority')?.errors?.['min'] || analysisForm.get('domainAuthority')?.errors?.['max']) {
+            Domain authority must be between 1 and 100
+          }
+        </mat-error>
+      }
+    </mat-form-field>
+
+    <!-- Analysis Date -->
+    <mat-form-field appearance="fill">
+      <mat-label>Analysis Date</mat-label>
+      <input matInput formControlName="analyzedAt" type="datetime-local">
+      @if (analysisForm.get('analyzedAt')?.invalid && analysisForm.get('analyzedAt')?.touched) {
+        <mat-error>Analysis date is required</mat-error>
+      }
+    </mat-form-field>
+
+    <!-- Error/Success Messages -->
+    @if (errorMessage) {
+      <div class="message error-message">{{ errorMessage }}</div>
+    }
+
+    @if (successMessage) {
+      <div class="message success-message">{{ successMessage }}</div>
+    }
+
+    <!-- Submit Button -->
+    <div class="button-container">
+      <button mat-raised-button color="primary" type="submit" [disabled]="isSubmitting">
+        {{ isSubmitting ? 'Adding...' : 'Add Analysis' }}
+      </button>
+    </div>
+  </form>
+</div>

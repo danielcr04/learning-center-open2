@@ -1,0 +1,16 @@
+<!-- list-domain-summary.component.html -->
+<h2>Domain Summaries</h2>
+
+<mat-grid-list cols="3" rowHeight="200px" gutterSize="24px">
+  @for (domain of domains; track domain) {
+    <mat-grid-tile>
+      <app-domain-summary [domain]="domain"></app-domain-summary>
+    </mat-grid-tile>
+  }
+</mat-grid-list>
+
+@if (errorMessage) {
+  <div class="error-message">
+    <p>{{ errorMessage }}</p>
+  </div>
+}

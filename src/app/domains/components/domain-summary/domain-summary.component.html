@@ -1,0 +1,28 @@
+<mat-card aria-label="Domain summary card">
+  <mat-card-header>
+    <!-- Logo del dominio obtenido desde Clearbit -->
+    <div class="domain-logo">
+      <img class="image-card" [src]="logoUrl" alt="Domain logo" />
+    </div>
+    <h3>{{ domain.name }}</h3>
+  </mat-card-header>
+  <mat-card-content>
+    <p>
+      <strong>Average Domain Authority:</strong>
+      @if (averageDomainAuthority === null) {
+        <span>No analyses</span>
+      } @else {
+        <span>{{ averageDomainAuthority }}</span>
+      }
+    </p>
+    <p>
+      <strong>Number of Analyses:</strong> {{ numberAnalyses }}
+    </p>
+  </mat-card-content>
+  <mat-card-footer>
+    <div>
+      <strong>Last Analyzed At:</strong>
+      <span>{{ lastAnalyzedAt |  date: 'medium'  }}</span>
+    </div>
+  </mat-card-footer>
+</mat-card>
